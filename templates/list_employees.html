@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Empleados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Lista de Empleados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rol</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Sexo</th>
+                <th>Edad</th>
+                <th>Puesto</th>
+                <th>Estatura</th>
+                <th>Horas de Trabajo</th>
+                <th>Horas de Descanso</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+            <tr>
+                <td>{{ empleado.empleado_id }}</td>
+                <td>{{ empleado.rol }}</td>
+                <td>{{ empleado.Nombre }}</td>
+                <td>{{ empleado.Apellido }}</td>
+                <td>{{ empleado.sexo }}</td>
+                <td>{{ empleado.edad }}</td>
+                <td>{{ empleado.puesto }}</td>
+                <td>{{ empleado.estatura }}</td>
+                <td>{{ empleado.horas_trabajo }}</td>
+                <td>{{ empleado.horas_descanso }}</td>
+                <td>
+                    <a href="{{ url_for('update_employee', empleado_id=empleado.empleado_id) }}">Actualizar</a> |
+                    <a href="{{ url_for('delete_employee', empleado_id=empleado.empleado_id) }}" onclick="return confirm('¿Está seguro de que desea eliminar este empleado?');">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{{ url_for('dashboard') }}">Volver al Dashboard</a>
+</body>
+</html>
