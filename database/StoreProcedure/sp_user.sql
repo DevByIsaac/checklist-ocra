@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 CREATE OR REPLACE PROCEDURE create_user(
     p_username VARCHAR,
     p_email VARCHAR,

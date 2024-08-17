@@ -1,0 +1,112 @@
+<!-- ejemplos.html -->
+{% extends "base.html" %}
+
+{% block title %}ERGORICE - Ejemplos{% endblock %}
+
+{% block content %}
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="pb-3">                        
+            <div class="bg-white mb-3" style="padding: 30px;">
+                <h2 class="mb-3">Agrega nuevos datos e información</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo00.png') }}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 1</h6>
+                    <h1 class="mb-3">Crea y registra</h1>
+                    <p>Al momento de seleccionar el puesto de trabajo o al trabajador, puedes crear un nuevo registro si no encuentras el que deseas</p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo0.png') }}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo01.png') }}" alt="">
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="pb-3">                        
+            <div class="bg-white mb-3" style="padding: 30px;">
+                <h2 class="mb-3">Elige y llena el formulario</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo1.png') }}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 2</h6>
+                    <h1 class="mb-3">La información y datos que desees estará a tu disposición</h1>
+                    <p>En el momento que tengas registrado el trabajador o creado el puesto de trabajo con el que deseas realizar la evaluación 
+                        puedes proceder a Cargar el formulario. Para posteriormente obtener los archivos que contienen con dicha evaluación.
+                    </p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo12.png') }}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo13.png') }}" alt="">
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5">
+        <div class="pb-3">                        
+            <div class="bg-white mb-3" style="padding: 30px;">
+                <h2 class="mb-3">Observa los resultados</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6" style="min-height: 500px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute w-100 h-100" src="{{ url_for('static', filename='imagenes/ejemplo2.jpeg') }}" style="object-fit: cover;">
+                </div>
+            </div>
+            <div class="col-lg-6 pt-5 pb-lg-5">
+                <div class="about-text bg-white p-4 p-lg-5 my-lg-5">
+                    <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">Ejemplo 3</h6>
+                    <h1 class="mb-3">Toda la información está a tu alcance</h1>
+                    <p>Luego de haber cargado el respectivo formulario, automáticamente podrás observar los resultados si lo deseas. 
+                        También podrás modificar las puntuaciones según las condiciones del método.
+                    </p>
+                    <div class="row mb-4">
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo21.png') }}" alt="">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imagenes/ejemplo22.png') }}" alt="">
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+{% endblock %}

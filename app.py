@@ -1,11 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from database import authenticate_user, create_user_procedure
 from database import create_empleado, update_empleado, delete_empleado, get_all_empleados, get_empleado_by_id
+from info import info_routes  # Import the Blueprint
+from employee import employee_routes  # Import the Blueprint
+from upload_video import video_routes  # Import the Blueprint
 
 from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+app.register_blueprint(info_routes)
+app.register_blueprint(employee_routes)
+app.register_blueprint(video_routes)
 
 @app.route('/')
 def index():
@@ -16,17 +22,16 @@ def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        
         if authenticate_user(email, password):
             session['user_email'] = email
             flash('¡Inicio de sesión exitoso!', 'success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('index'))
         else:
             flash('Error en el inicio de sesión. Verifica tu correo electrónico y/o contraseña.', 'danger')
     
     return render_template('login.html')
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/registro', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form['username']
