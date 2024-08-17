@@ -21,7 +21,7 @@
 1. **Clona el Repositorio**
 
    ```bash
-   git clone https://github.com/DevByIsaac/TesisCheckListOCRA.git
+   git clone https://github.com/ug-edu-ec/tt-2024-c1-ergo-ocra.git
 
 2. **Instala las Dependencias**
 Crea un entorno virtual y activa:
@@ -57,5 +57,5 @@ Licencia
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
 
 Contacto
-Para más información o consultas, puedes contactar al autor a través de isaac_gomez_elmaster@live.com
+Para más información o consultas, puedes contactar al autor a través de isaacr.gomezj@ug.edu.ec
 
