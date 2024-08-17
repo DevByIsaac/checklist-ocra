@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Empleado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Actualizar Empleado</h1>
+    <form action="{{ url_for('update_employee', empleado_id=empleado.empleado_id) }}" method="post">
+        <label for="rol">Rol:</label>
+        <input type="text" id="rol" name="rol" value="{{ empleado.rol }}" required><br><br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ empleado.Nombre }}" required><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" value="{{ empleado.Apellido }}" required><br><br>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+            <option value="M" {% if empleado.sexo == 'M' %}selected{% endif %}>Masculino</option>
+            <option value="F" {% if empleado.sexo == 'F' %}selected{% endif %}>Femenino</option>
+        </select><br><br>
+
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" value="{{ empleado.edad }}" required><br><br>
+
+        <label for="puesto">Puesto:</label>
+        <input type="text" id="puesto" name="puesto" value="{{ empleado.puesto }}" required><br><br>
+
+        <label for="estatura">Estatura (en metros):</label>
+        <input type="number" step="0.01" id="estatura" name="estatura" value="{{ empleado.estatura }}" required><br><br>
+
+        <label for="horas_trabajo">Horas de Trabajo:</label>
+        <input type="time" id="horas_trabajo" name="horas_trabajo" value="{{ empleado.horas_trabajo }}" required><br><br>
+
+        <label for="horas_descanso">Horas de Descanso:</label>
+        <input type="time" id="horas_descanso" name="horas_descanso" value="{{ empleado.horas_descanso }}" required><br><br>
+
+        <input type="hidden" name="updated_by" value="{{ session['user_email'] }}">
+
+        <button type="submit">Actualizar Empleado</button>
+    </form>
+    <br>
+    <a href="{{ url_for('dashboard') }}">Volver al Dashboard</a>
+</body>
+</html>

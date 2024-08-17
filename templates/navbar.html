@@ -9,7 +9,7 @@
             <!-- <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90"> -->
             <a href="{{ url_for('index') }}">
                 <img src="{{ url_for('static', filename='imagenes/logo.png') }}" width="90" height="90" alt="Logo">
-            </a>            
+            </a>
             <a href="/" class="navbar-brand">
                 <h1 class="m-0 text-primary"><span class="text-dark">ERGO</span>TECH</h1>
             </a>
@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav ml-auto py-0">
                     <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="/info_ocra" class="nav-item nav-link active">CheckList OCRA</a>
+                    <a href="/info_ocra" class="nav-item nav-link">CheckList OCRA</a>
                     <!--<div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Factores</a>
                          <div class="dropdown-menu border-0 rounded-0 m-0">
@@ -28,10 +28,18 @@
                             <a href="info_ocra" class="dropdown-item">Factor Frecuencia</a>
                         </div> 
                     </div>-->
-                    <!-- <a href="/cargar_video" class="nav-item nav-link">Analizar Video</a> -->
-                    <a href="/registro" class="nav-item nav-link">Registrarse</a>
-                    <a href="/login" class="nav-item nav-link">Iniciar sesión</a>
-                    <!-- <a href="/registro_empleado" class="nav-item nav-link">Registro de empleado</a> -->
+                    {% if session.get('user_email') %}
+                        <a href="/cargar_video" class="nav-item nav-link">Analizar Video</a>
+                        <a  href="/registro_empleado" class="nav-item nav-link">Registro de empleado</a>
+                        <a class="nav-link" href="#">{{ session['user_email'] }}</a>
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a href="/login" class="nav-item nav-link">Iniciar sesión</a>
+                        <a href="/registro" class="nav-item nav-link">Registrarse</a>
+                    {% endif %}
+
+
+
                 </div>
             </div>
         </nav>

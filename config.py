@@ -3,5 +3,5 @@ class Config:
     DB_USER = 'postgres'
     DB_PASSWORD = '12345'
     DB_HOST = 'localhost'
-    DB_PORT = '5000'
-    # otras configuraciones
+    DB_PORT = '5432'
+    SECRET_KEY = 'your_secret_key_here'

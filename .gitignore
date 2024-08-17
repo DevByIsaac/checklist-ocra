@@ -1,4 +1,3 @@
-venv/
-admin_sdk.json
-__pycache__
-python/static/resultados
+/venv
+/env
+/__pycache__

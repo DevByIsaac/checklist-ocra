@@ -1,21 +1,16 @@
-CREATE OR REPLACE FUNCTION public.authenticate_user(
-    p_email VARCHAR,
-    p_password VARCHAR
-)
-RETURNS TABLE(auth_result TEXT) 
-LANGUAGE plpgsql
-AS $$
+CREATE OR REPLACE FUNCTION public.authenticate_user(email TEXT, password TEXT)
+RETURNS TABLE(result TEXT) AS $$
 BEGIN
-    RETURN QUERY
-    SELECT 
-        CASE 
-            WHEN EXISTS (
-                SELECT 1
-                FROM users
-                WHERE email = p_email
-                AND password = crypt(p_password, password)
-            ) THEN 'success'
-            ELSE 'failure'
-        END;
+    IF EXISTS (
+        SELECT 1
+        FROM users u
+        WHERE u.email = authenticate_user.email
+        AND u.password = crypt(authenticate_user.password, u.password)
+    ) THEN
+        result := 'success';
+    ELSE
+        result := 'failure';
+    END IF;
+     RETURN QUERY SELECT result;
 END;
-$$;
+$$ LANGUAGE plpgsql;
