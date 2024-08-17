@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}ERGORICE - Manual Usuario{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <!-- Blog Detail Start -->
+                <div class="pb-3">
+                    <div class="blog-item">
+                        <div class="position-relative">
+                            <img class="img-fluid w-100" src="{{ url_for('static', filename='imagenes/manual1.jpg') }}" alt="">
+                        </div>
+                    </div>
+                    <div class="bg-white mb-3" style="padding: 20px;">
+                        <div class="d-flex mb-3">
+                            <a class="text-primary text-uppercase text-decoration-none" href="">Manual para el usuario</a>
+                        </div>
+                        <h2 class="mb-3">Propósito de la aplicación</h2>
+                        <p>ERGORICE tiene como propósito brindar al usuario resultados basados en la evaluación ergonómica 
+                            (metodos evaluativos REBA y RULA) realizada al video seleccionado mediante detección de los
+                            puntos claves del cuerpo humano.
+                        </p>
+                        <h4 class="mb-3">Registrar información a evaluar</h4>
+                        <p>- Después de iniciar sesión, se le presentarán las opciónes de elegir el puesto de trabajo y 
+                            el trabajador, y el video a ser evaluado, si entre las opciones de puesto de trabajo o trabajador no se encuentran
+                            los que el usuario desea evaluar, podrá registrar al trabajador o crear el puesto de trabajo, también debe elegir 
+                            entre los métodos de evaluación RULA y REBA. 
+                            Seleccione el método deseado haciendo clic en el botón correspondiente.
+                        </p>
+                        <h5 class="mb-3">Procesamiento del video</h5>
+                        <img class="img-fluid w-50 float-left ml-4 mb-2" src="{{ url_for('static', filename='imagenes/manual2.jpg') }}">
+                        <p>En este caso, el usuario puede detener el video para poder finalizador con el procesamiento del video o simplemente
+                            puede dejar que finalice la reproducción del video, tambien tiene las opciones de ver los angulos detectados, y la opcion
+                            de ver los resultados.
+                        </p>
+                        <h5 class="mb-3">Visualización de los resultados</h5>
+                        <img class="img-fluid w-50 float-right ml-4 mb-2" src="{{ url_for('static', filename='imagenes/manual3.jpg') }}">
+                        <p>Finalmente el usuario puede observar los resultados realizados junto con el fotograma en cada segundo, 
+                            con la finalidad de que puedan modificar, guardar y actualizar las columnas que almacenan las puntuaciones. Por 
+                            último el usuario puede descargar los resultados en un archivo excel o pdf.
+                        </p>
+                    </div>
+                </div>
+                <!-- Blog Detail End -->
+            </div>
+
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <!-- Author Bio -->
+                <div class="d-flex flex-column text-center bg-white mb-5 py-5 px-4">
+                    <h3 class="text-primary mb-3">Registros</h3>
+                    <img src="{{ url_for('static', filename='imagenes/manual4.jpg') }}" class="img-fluid mx-auto mb-3">
+                    <p>Al dar clic en los iconos debajo de cada campo se puede agregar un nuevo puesto de trabajo asi como tambien un nuevo trabajador</p>
+                    <img src="{{ url_for('static', filename='imagenes/manual5.jpg') }}" class="img-fluid mx-auto mb-3">
+                </div>
+
+                <!-- Category List -->
+                <div class="mb-5">
+                    <h4 class="text-uppercase mb-4" style="letter-spacing: 5px;">Puestos de trabajo</h4>
+                    <div class="bg-white" style="padding: 30px;">
+                        <ul class="list-inline m-0">
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Cultivador</a>
+                            </li>
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Cosechador</a>
+                            </li>
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Fumigador</a>
+                            </li>
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
+                                <a class="text-dark"><i class="fa fa-angle-right text-primary mr-2"></i>Recolector</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Registrarse - ERGORICE{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto register-form-container">
+            <!-- <h2 class="my-4">Registro</h2>
+            <img src="{{ url_for('static', filename='imagenes/regis1.png') }}" alt="Image" class="small-image"> -->
+            <h2 class="my-4 d-flex align-items-center">
+                <img src="{{ url_for('static', filename='imagenes/registro.png') }}" alt="Image" class="small-image mr-2">
+                Registro
+            </h2>
+              
+            <form action="/registro" method="POST">
+                <!-- Campos del formulario -->
+                <div class="form-group">
+                    <label for="cedula">Cédula:</label>
+                    <input type="text" class="form-control" id="cedula" name="cedula" required>
+                </div>
+                <div class="form-group">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" class="form-control" id="nombres" name="nombres" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" class="form-control" id="apellidos" name="apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="sexo">Sexo:</label>
+                    <select class="form-control" id="sexo" name="sexo" required>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edad">Edad:</label>
+                    <input type="number" class="form-control" id="edad" name="edad" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo de Usuario:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirmar Contraseña:</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+                <div class="form-footer mt-3">
+                    <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión aquí</a></p>
+                </div>
+            </form>          
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,112 @@
+<!-- angulos.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERGORICE - Angulos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Otros estilos si es necesario -->
+    <!-- LOGO -->
+    <link href="{{ url_for('static', filename='imagenes/logo.png') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"></script> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/scripts.js') }}">
+</head>
+<body class="bg-light">
+    <!-- Topbar Start -->
+    {%  include 'topbar.html' %}
+    <!-- Topbar End -->    
+    <!-- Navbar Start -->
+    {%  include 'navbar.html' %}
+    <!-- Navbar End -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="contact-form bg-white" style="padding: 0px;">    
+                <div class="card-header bg-primary text-center p-4">
+                    <h1 class="text-white m-0">ÁNGULOS DETECTADOS</h1>                    
+                </div>
+                <div class="contact-form bg-white">
+                    <a href="/home" class="btn btn-primary">Vover a Evaluar</a> 
+                    <a onclick="window.history.back()" class="btn btn-primary">Regresar</a>                                                                                                                    
+                </div>                                                            
+            </div>
+        </div>
+    </div>
+    <!-- Blog Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Blog Detail Start -->
+                    <div class="pb-3">
+                        <div class="bg-white mb-3" style="padding: 10px;">            
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>Segundo</th>
+                                        <th>Codo Izquierdo</th>
+                                        <th>Codo Derecho</th>
+                                        <th>Hombro Izquierdo</th>
+                                        <th>Hombro Derecho</th>
+                                        <th>Cadera Izquierda</th>
+                                        <th>Cadera Derecha</th>
+                                        <th>Rodilla Izquierda</th>
+                                        <th>Rodilla Derecha</th>
+                                        <th>Muñeca Izquierda</th>
+                                        <th>Muñeca Derecha</th>
+                                        <th>Inclinacion del cuello</th>
+                                        <th>Inclinacion del torso</th>                                                                
+                                        <!-- Agrega aquí los demás encabezados de columna -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for entry in data %}
+                                        <tr>
+                                            <td>{{ entry['Segundo'] }}</td>
+                                            <td>{{ entry['Codo Izquierdo'] }}</td>
+                                            <td>{{ entry['Codo Derecho'] }}</td>
+                                            <td>{{ entry['Hombro Izquierdo'] }}</td>
+                                            <td>{{ entry['Hombro Derecho'] }}</td>
+                                            <td>{{ entry['Cadera Izquierda'] }}</td>
+                                            <td>{{ entry['Cadera Derecha'] }}</td>
+                                            <td>{{ entry['Rodilla Izquierda'] }}</td>
+                                            <td>{{ entry['Rodilla Derecha'] }}</td>
+                                            <td>{{ entry['Muñeca Izquierda'] }}</td>
+                                            <td>{{ entry['Muñeca Derecha'] }}</td>
+                                            <td>{{ entry['Inclinacion del cuello'] }}</td>
+                                            <td>{{ entry['Inclinacion del torso'] }}</td>                                                                                
+                                            <!-- Agrega aquí las demás celdas de datos -->
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Start -->
+    {%  include 'footer.html' %}
+    <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+            
+</body>
+</html>
