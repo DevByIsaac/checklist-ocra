@@ -96,7 +96,7 @@ def get_all_empleados():
     conn = get_db_connection()
     try:
         with conn.cursor() as cursor:
-            cursor.execute("CALL public.get_all_empleados()")
+            cursor.execute('SELECT empleado_id, nombre, apellido FROM empleado')
             rows = cursor.fetchall()
             columns = [desc[0] for desc in cursor.description]
             empleados = [dict(zip(columns, row)) for row in rows]
