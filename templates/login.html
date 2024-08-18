@@ -20,10 +20,10 @@
     </form>
     
     <!-- Mostrar mensajes flash -->
-    {% with messages = get_flashed_messages(with_categories=True) %}
-        {% if messages %}
+    {% with msg = get_flashed_messages() %}
+        {% if msg %}
             <div id="flash-messages">
-                {% for category, message in messages %}
+                {% for message in msg %}
                     <div class="flash-message">{{ message }}</div>
                 {% endfor %}
             </div>

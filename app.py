@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from database import authenticate_user, create_user_procedure
 from database import create_empleado, update_empleado, delete_empleado, get_all_empleados, get_empleado_by_id
-from info import info_routes  # Import the Blueprint
-from employee import employee_routes  # Import the Blueprint
-from upload_video import video_routes  # Import the Blueprint
+from info import info_routes
+from employee import employee_routes
+from upload_video import video_routes
 
 from config import Config
 
@@ -117,13 +117,6 @@ def delete_empleado_route(empleado_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@app.route('/empleados', methods=['GET'])
-def get_empleados():
-    try:
-        empleados = get_all_empleados()
-        return jsonify(empleados), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}),   
 
 @app.route('/empleado/<int:empleado_id>', methods=['GET'])
 def get_empleado(empleado_id):

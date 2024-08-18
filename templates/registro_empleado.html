@@ -12,56 +12,58 @@
             </h2>
               
             <form action="/registro_empleado" method="POST">
+                {{ form.hidden_tag() }}
                 <!-- Campos del formulario para Empleado -->
                 <div class="form-group">
-                    <label for="rol">Rol:</label>
-                    <input type="text" class="form-control" id="rol" name="rol" required>
+                    <label for="rol"> {{ form.rol.label}}</label>
+                    {{ form.rol(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    {{ form.nombre(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                    {{ form.apellido(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="sexo">Sexo:</label>
-                    <select class="form-control" id="sexo" name="sexo" required>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
-                    </select>
+                    {{ form.sexo(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="edad">Edad:</label>
-                    <input type="number" class="form-control" id="edad" name="edad" required>
+                    {{ form.edad(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    <label for="puesto">Estatura:</label>
+                    {{ form.estatura(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="puesto">Puesto:</label>
-                    <input type="text" class="form-control" id="puesto" name="puesto" required>
+                    {{ form.puesto(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="duracion_turno">Duración del Turno (minutos):</label>
-                    <input type="number" class="form-control" id="duracion_turno" name="duracion_turno">
+                    {{ form.duracion_turno(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="duracion_descanso">Duración del Descanso (minutos):</label>
-                    <input type="number" class="form-control" id="duracion_descanso" name="duracion_descanso">
+                    {{ form.duracion_descanso(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="duracion_tiempo_libre">Duración del Tiempo Libre (minutos):</label>
-                    <input type="number" class="form-control" id="duracion_tiempo_libre" name="duracion_tiempo_libre">
+                    {{ form.duracion_tiempo_libre(class="form-control") }}
                 </div>
 
                 <!-- Campos del formulario para Actividades -->
                 <h4 class="my-4">Información de Actividades</h4>
                 <div class="form-group">
                     <label for="tipo_actividad">Tipo de Actividad:</label>
-                    <input type="text" class="form-control" id="tipo_actividad" name="tipo_actividad" required>
+                    <input type="text" class="form-control" id="tipo_actividad" name="tipo_actividad">
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion">
                 </div>
                 <div class="form-group">
                     <label for="actividad_repetitiva">Actividad Repetitiva:</label>
@@ -160,8 +162,17 @@
                     </select>
                 </div>
                 
-                
-                <button type="submit" class="btn btn-primary">Registrar Empleado</button>
+                {{ form.submit(class="btn btn-primary")}}
+                 <!-- Mostrar mensajes flash -->
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div id="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
             </form>          
         </div>
     </div>
