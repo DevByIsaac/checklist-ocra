@@ -12,11 +12,41 @@
                     class="img-responsive mr-2">
                 Cargar Video
             </h2>
-            <!-- Botón para subir video -->
-            <div class="form-group mb-4">
-                <label for="uploadVideo">Subir Video:</label>
-                <input type="file" class="form-control-file" id="uploadVideo" name="uploadVideo" accept="video/*">
+            <!-- Pantalla de carga -->
+            <div id="loading" style="display: none;">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Cargando...</span>
+                </div>
+                <p>Cargando video...</p>
             </div>
+            <!-- Botón para subir video -->
+            <form action="{{ url_for('video_routes.upload_video') }}" method="POST" enctype="multipart/form-data">
+                <!-- Combo box para seleccionar el empleado -->
+            <div class="form-group mb-4">
+                <label for="empleado">Empleado:</label>
+                <select id="empleado" name="empleado" class="form-control">
+                    <option value="" disabled selected>Selecciona un empleado</option>
+                    {% for empleado in employees %}
+                        <option value="{{ empleado.empleado_id }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- <select id="empleado" name="empleado" class="form-control">
+                    <option value="1">Isaac Gómez</option>
+                    <option value="2">Jordano Sornoza</option>
+                    <option value="3">Klever Franco</option>
+                    <option value="4">Matias Peñafiel</option>
+                </select> -->
+            </div>
+
+            <div class="form-group mb-4">
+                    <label for="uploadVideo">Subir Video:</label>
+                    <input  class="form-control-file" type="file" name="file" accept="video/*" required>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Subir y Procesar</button>
+                </div>
+            </form>
+          
             <!-- Combo box para seleccionar el método -->
             <div class="form-group mb-4">
                 <label for="metodo">Método:</label>
@@ -24,26 +54,14 @@
                     <option value="OCRA">OCRA</option>
                 </select>
             </div>
-
-            <!-- Combo box para seleccionar el empleado -->
-            <div class="form-group mb-4">
-                <label for="empleado">Empleado:</label>
-                <select id="empleado" name="empleado" class="form-control">
-                    <option value="1">Isaac Gómez</option>
-                    <option value="2">Jordano Sornoza</option>
-                    <option value="3">Klever Franco</option>
-                    <option value="4">Matias Peñafiel</option>
-                    <!-- Añadir más opciones según sea necesario -->
-                </select>
-                </select>
-            </div>
+          
             <!-- Espacio para visualizar el video -->
             <div class="video-container mb-4">
                 <video id="videoPlayer" controls>
-                    <source src="" id="videoSource" type="video/mp4">
+                    <source src="{{ url_for('video_routes.video_view')}}" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
-                <button class="btn btn-secondary mt-2" id="downloadVideo">Descargar Video Marcado</button>
+                <button class="btn btn-secondary mt-2" href="{{ url_for('video_routes.video_view') }}" download>Descargar Video Marcado</button>
             </div>
             <img src="{{ url_for('static', filename='imagenes/mapa_calor_ocra.png') }}" alt="Image"
                     class="img-responsive_ocra mr-2">
@@ -177,4 +195,9 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function() {
+        document.getElementById('loading').style.display = 'block'; // Mostrar pantalla de carga
+    });
+    </script>
 {% endblock %}

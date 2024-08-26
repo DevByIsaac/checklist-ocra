@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from database import authenticate_user, create_user_procedure
-from database import create_empleado, update_empleado, delete_empleado, get_all_empleados, get_empleado_by_id
-from info import info_routes  # Import the Blueprint
-from employee import employee_routes  # Import the Blueprint
-from upload_video import video_routes  # Import the Blueprint
+from database import create_empleado, create_actividad, get_empleado_by_id
+from info import info_routes
+from employee import employee_routes
+from upload_video import video_routes
 
 from config import Config
 
@@ -74,56 +74,15 @@ def create_empleado_route():
             data['sexo'],
             data['edad'],
             data['puesto'],
-            data['estatura'],
-            data['horas_trabajo'],
-            data['horas_descanso'],
+            data.get('duracion_turno', None),  # Usar valor por defecto si no está presente
+            data.get('duracion_descanso', None),
+            data.get('duracion_tiempo_libre', None),
             data['created_by'],
             data['updated_by']
         )
         return jsonify({'message': 'Empleado creado con éxito'}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-@app.route('/update_empleado/<int:empleado_id>', methods=['PUT'])
-def update_empleado_route(empleado_id):
-    data = request.json
-    try:
-        update_empleado(
-            empleado_id,
-            data['rol'],
-            data['nombre'],
-            data['apellido'],
-            data['sexo'],
-            data['edad'],
-            data['puesto'],
-            data['estatura'],
-            data['horas_trabajo'],
-            data['horas_descanso'],
-            data['updated_by']
-        )
-        return jsonify({'message': 'Empleado actualizado con éxito'}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/delete_empleado/<int:empleado_id>', methods=['DELETE'])
-def delete_empleado_route(empleado_id):
-    data = request.json
-    try:
-        delete_empleado(
-            empleado_id,
-            data['updated_by']
-        )
-        return jsonify({'message': 'Empleado eliminado con éxito'}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-@app.route('/empleados', methods=['GET'])
-def get_empleados():
-    try:
-        empleados = get_all_empleados()
-        return jsonify(empleados), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}),   
 
 @app.route('/empleado/<int:empleado_id>', methods=['GET'])
 def get_empleado(empleado_id):
@@ -133,6 +92,29 @@ def get_empleado(empleado_id):
             return jsonify(empleado), 200
         else:
             return jsonify({'message': 'Empleado no encontrado'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/create_actividad', methods=['POST'])
+def create_actividad_route():
+    data = request.json
+    try:
+        create_actividad(
+            data['usuario_id'],
+            data['tipo_actividad'],
+            data['descripcion'],
+            data['actividad_repetitiva'],
+            data['num_pausas'],
+            data['lunch_break_duration'],
+            data['puntaje_ATD'],
+            data['puntaje_ATE'],
+            data['puntaje_acciones_fuerza'],
+            data['puntaje_FSO'],
+            data['puntaje_FFM'],
+            data['created_by'],
+            data['updated_by']
+        )
+        return jsonify({'message': 'Actividad creada con éxito'}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 

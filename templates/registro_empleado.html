@@ -12,56 +12,54 @@
             </h2>
               
             <form action="/registro_empleado" method="POST">
+                {{ form.hidden_tag() }}
                 <!-- Campos del formulario para Empleado -->
                 <div class="form-group">
-                    <label for="rol">Rol:</label>
-                    <input type="text" class="form-control" id="rol" name="rol" required>
+                    <label for="rol"> {{ form.rol.label}}</label>
+                    {{ form.rol(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    {{ form.nombre(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                    {{ form.apellido(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="sexo">Sexo:</label>
-                    <select class="form-control" id="sexo" name="sexo" required>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
-                    </select>
+                    {{ form.sexo(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="edad">Edad:</label>
-                    <input type="number" class="form-control" id="edad" name="edad" required>
+                    {{ form.edad(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="puesto">Puesto:</label>
-                    <input type="text" class="form-control" id="puesto" name="puesto" required>
+                    {{ form.puesto(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="duracion_turno">Duración del Turno (minutos):</label>
-                    <input type="number" class="form-control" id="duracion_turno" name="duracion_turno">
+                    {{ form.duracion_turno(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="duracion_descanso">Duración del Descanso (minutos):</label>
-                    <input type="number" class="form-control" id="duracion_descanso" name="duracion_descanso">
+                    {{ form.duracion_descanso(class="form-control") }}
                 </div>
                 <div class="form-group">
                     <label for="duracion_tiempo_libre">Duración del Tiempo Libre (minutos):</label>
-                    <input type="number" class="form-control" id="duracion_tiempo_libre" name="duracion_tiempo_libre">
+                    {{ form.duracion_tiempo_libre(class="form-control") }}
                 </div>
 
                 <!-- Campos del formulario para Actividades -->
                 <h4 class="my-4">Información de Actividades</h4>
                 <div class="form-group">
                     <label for="tipo_actividad">Tipo de Actividad:</label>
-                    <input type="text" class="form-control" id="tipo_actividad" name="tipo_actividad" required>
+                    <input type="text" class="form-control" id="tipo_actividad" name="tipo_actividad">
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
-                    <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                    <input type="text" class="form-control" id="descripcion" name="descripcion">
                 </div>
                 <div class="form-group">
                     <label for="actividad_repetitiva">Actividad Repetitiva:</label>
@@ -82,8 +80,8 @@
                         <option value="3">Existen 3 pausas (sin descanso para el almuerzo), de al menos 8 minutos, en un turno de 7-8 horas.</option>
                         <option value="4">Existen al menos 4 interrupciones (además del descanso para el almuerzo) de al menos 8 minutos en un turno de 7-8 horas.</option>
                         <option value="4">Existen 4 interrupciones de al menos 8 minutos en un turno de 6 horas (sin descanso para el almuerzo).</option>
-                        <option value="10">El periodo de recuperación está incluido en el ciclo de trabajo (al menos 10 segundos consecutivos de cada 60, en todos los ciclos de todo el turno).</option>
-                        <option value="60">Existe una interrupción de al menos 8 minutos cada hora de trabajo (contando el descanso del almuerzo).</option>
+                        <option value="1">El periodo de recuperación está incluido en el ciclo de trabajo (al menos 10 segundos consecutivos de cada 60, en todos los ciclos de todo el turno).</option>
+                        <option value="1">Existe una interrupción de al menos 8 minutos cada hora de trabajo (contando el descanso del almuerzo).</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -94,21 +92,21 @@
                     <label for="acciones_tecnicas_dinamicas">Acciones Técnicas Dinámicas:</label>
                     <select class="form-control" id="acciones_tecnicas_dinamicas" name="acciones_tecnicas_dinamicas">
                         <option value="0">No requiere acción</option>
-                        <option value="20">Movimientos del brazo son lentos (20 acciones/minuto). Se permiten pequeñas pausas frecuentes.</option>
-                        <option value="30">Movimientos del brazo no son demasiado rápidos (30 acciones/minuto). Se permiten pequeñas pausas.</option>
-                        <option value="40">Movimientos del brazo son bastante rápidos (más de 40 acciones/minuto). Se permiten pequeñas pausas.</option>
-                        <option value="40">Movimientos del brazo son bastante rápidos (más de 40 acciones/minuto). Sólo se permiten pequeñas pausas ocasionales e irregulares.</option>
-                        <option value="50">Movimientos del brazo son rápidos (más de 50 acciones/minuto). Sólo se permiten pequeñas pausas ocasionales e irregulares.</option>
-                        <option value="60">Movimientos del brazo son rápidos (más de 60 acciones/minuto). La carencia de pausas dificulta el mantenimiento del ritmo.</option>
-                        <option value="70">Movimientos del brazo se realizan con una frecuencia muy alta (70 acciones/minuto o más). No se permiten las pausas.</option>
+                        <option value="0">Movimientos del brazo son lentos (20 acciones/minuto). Se permiten pequeñas pausas frecuentes.</option>
+                        <option value="1">Movimientos del brazo no son demasiado rápidos (30 acciones/minuto). Se permiten pequeñas pausas.</option>
+                        <option value="3">Movimientos del brazo son bastante rápidos (más de 40 acciones/minuto). Se permiten pequeñas pausas.</option>
+                        <option value="4">Movimientos del brazo son bastante rápidos (más de 40 acciones/minuto). Sólo se permiten pequeñas pausas ocasionales e irregulares.</option>
+                        <option value="6">Movimientos del brazo son rápidos (más de 50 acciones/minuto). Sólo se permiten pequeñas pausas ocasionales e irregulares.</option>
+                        <option value="8">Movimientos del brazo son rápidos (más de 60 acciones/minuto). La carencia de pausas dificulta el mantenimiento del ritmo.</option>
+                        <option value="10">Movimientos del brazo se realizan con una frecuencia muy alta (70 acciones/minuto o más). No se permiten las pausas.</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="acciones_tecnicas_estaticas">Acciones Técnicas Estáticas:</label>
                     <select class="form-control" id="acciones_tecnicas_estaticas" name="acciones_tecnicas_estaticas">
                         <option value="0">No requiere acción</option>
-                        <option value="2/3">Se sostiene un objeto durante al menos 5 segundos consecutivos realizándose una o más acciones estáticas durante 2/3 del tiempo de ciclo (o de observación).</option>
-                        <option value="3/3">Se sostiene un objeto durante al menos 5 segundos consecutivos realizándose una o más acciones estáticas durante 3/3 del tiempo de ciclo (o de observación).</option>
+                        <option value="2.5">Se sostiene un objeto durante al menos 5 segundos consecutivos realizándose una o más acciones estáticas durante 2/3 del tiempo de ciclo (o de observación).</option>
+                        <option value="4.5">Se sostiene un objeto durante al menos 5 segundos consecutivos realizándose una o más acciones estáticas durante 3/3 del tiempo de ciclo (o de observación).</option>
                     </select>
                 </div>
                 
@@ -139,6 +137,7 @@
                 <div class="form-group">
                     <label for="factores_socio_organizativos">Factores Socio-Organizativos (Fso):</label>
                     <select class="form-control" id="factores_socio_organizativos" name="factores_socio_organizativos">
+                        <option value="0">No requiere acción</option>
                         <option value="1">El ritmo de trabajo está parcialmente determinado por la máquina, con pequeños lapsos de tiempo en los que el ritmo de trabajo puede disminuirse o acelerarse</option>
                         <option value="2">El ritmo de trabajo está totalmente determinado por la máquina</option>
                     </select>
@@ -147,6 +146,7 @@
                 <div class="form-group">
                     <label for="factores_fisico_mecanicos">Factores Físico-Mecánicos (Ffm):</label>
                     <select class="form-control" id="factores_fisico_mecanicos" name="factores_fisico_mecanicos">
+                        <option value="0">No requiere acción</option>
                         <option value="2">Se utilizan guantes inadecuados (que interfieren en la destreza de sujeción requerida por la tarea) más de la mitad del tiempo</option>
                         <option value="2">La actividad implica golpear (con un martillo, golpear con un pico sobre superficies duras, etc.) con una frecuencia de 2 veces por minuto o más</option>
                         <option value="2">La actividad implica golpear (con un martillo, golpear con un pico sobre superficies duras, etc.) con una frecuencia de 10 veces por hora o más</option>
@@ -160,8 +160,17 @@
                     </select>
                 </div>
                 
-                
-                <button type="submit" class="btn btn-primary">Registrar Empleado</button>
+                {{ form.submit(class="btn btn-primary")}}
+                 <!-- Mostrar mensajes flash -->
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div id="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
             </form>          
         </div>
     </div>
