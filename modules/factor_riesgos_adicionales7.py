@@ -10,9 +10,8 @@ def calculate_additional_risks(actividad):
     # Ejemplo: Puedes tener varios campos que influyen en el FC
     #puntaje_fso = actividad["puntaje_fso",0] #json_data.get('RiesgoAdicional1', 2)
     #puntaje_ffm = actividad["puntaje_ffm",32]
-    puntaje_fso = actividad.get("puntaje_fso", 0)  # Usamos .get para obtener el valor o un valor por defecto
-    puntaje_ffm = actividad.get("puntaje_ffm", 32)  # Usamos .get para obtener el valor o un valor por defecto
-    
+    puntaje_fso = actividad["puntaje_fso"]  # Usamos .get para obtener el valor o un valor por defecto
+    puntaje_ffm = actividad["puntaje_ffm"]  # Usamos .get para obtener el valor o un valor por defecto
     
     # Ejemplo de fórmula para el FC
     fc = puntaje_fso + puntaje_ffm 
@@ -43,9 +42,9 @@ def factor_ries_adi(actividad):
 
     # Tomar el primer objeto de la lista
     data = data_list[0]
-
+    print(data)
     # Calcular el FC
-    fc = calculate_additional_risks(data)
+    fc = calculate_additional_risks(actividad)
 
     # Añadir el cálculo al JSON
     data['Factor de Riesgos Adicionales'] = fc

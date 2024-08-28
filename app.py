@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify, send_file, abort
 from database import authenticate_user, create_user_procedure
 from database import create_empleado, create_actividad, get_empleado_by_id
 from info import info_routes
 from employee import employee_routes
 from upload_video import video_routes
-
+import os
 from config import Config
 
 app = Flask(__name__)
@@ -117,6 +117,35 @@ def create_actividad_route():
         return jsonify({'message': 'Actividad creada con éxito'}), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/descargar-excel')
+def descargar_excel():
+    # Nombre base del archivo Excel, sin fecha y hora
+    nombre_video = request.args.get('video', default='etiquetado', type=str)
+    nombre_base = f'analisisOcra_{nombre_video}_'
+
+    # Ruta de la carpeta de resultados
+    resultados_folder = os.path.join('static', 'resultados')
+
+    # Obtener la lista de archivos en la carpeta de resultados
+    archivos = os.listdir(resultados_folder)
+    
+    # Filtrar los archivos que coinciden con el nombre base
+    archivos_filtrados = [archivo for archivo in archivos if archivo.startswith(nombre_base) and archivo.endswith('.xlsx')]
+
+    if not archivos_filtrados:
+        # No se encontraron archivos que coincidan con el nombre base
+        return abort(404, description="No se encontró el archivo Excel para el análisis especificado.")
+
+    # Obtener el archivo más reciente basado en la fecha y hora en el nombre del archivo
+    archivos_filtrados.sort()
+    archivo_reciente = archivos_filtrados[-1]
+
+    # Ruta completa del archivo Excel más reciente
+    excel_path = os.path.join(resultados_folder, archivo_reciente)
+
+    # Enviar el archivo Excel para que el usuario lo descargue
+    return send_file(excel_path, as_attachment=True, download_name=archivo_reciente)
 
 if __name__ == '__main__':
     app.run(debug=True)

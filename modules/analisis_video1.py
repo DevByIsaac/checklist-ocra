@@ -50,15 +50,16 @@ def process_video(video_dir, empleado):
     output_video_folder = video_marcado_folder
     
     #json_folder = 'C:\\Tesis\\TestErgo\\archivos_json'
-    draw_keypoints_and_angles(video_path, output_video_folder, json_folder, mp_pose)
-    tiempo_neto(actividad, empleado)
-    factor_recu(actividad, empleado)
+    video_exportado, json_archivo = draw_keypoints_and_angles(video_path, output_video_folder, json_folder, mp_pose)
+    tiempo_neto(empleado, actividad)
+    factor_recu(empleado, actividad)
     factor_fre(actividad)
     factor_fuer(actividad)
     factor_pos_mov()
     factor_ries_adi(actividad)
     data_list = multiplicador()
     convertir_datafram(data_list)
+    return video_exportado, json_archivo
 
 def guardar_video_marcado(video_path, video_name):
     # Define la ruta de la carpeta 'video_marcado' dentro de 'static'

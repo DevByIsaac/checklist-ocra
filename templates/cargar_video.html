@@ -22,31 +22,32 @@
             <!-- Botón para subir video -->
             <form action="{{ url_for('video_routes.upload_video') }}" method="POST" enctype="multipart/form-data">
                 <!-- Combo box para seleccionar el empleado -->
-            <div class="form-group mb-4">
-                <label for="empleado">Empleado:</label>
-                <select id="empleado" name="empleado" class="form-control">
-                    <option value="" disabled selected>Selecciona un empleado</option>
-                    {% for empleado in employees %}
-                        <option value="{{ empleado.empleado_id }}">{{ empleado.nombre }} {{ empleado.apellido }}</option>
-                    {% endfor %}
-                </select>
+                <div class="form-group mb-4">
+                    <label for="empleado">Empleado:</label>
+                    <select id="empleado" name="empleado" class="form-control">
+                        <option value="" disabled selected>Selecciona un empleado</option>
+                        {% for empleado in employees %}
+                        <option value="{{ empleado.empleado_id }}">{{ empleado.nombre }} {{ empleado.apellido }}
+                        </option>
+                        {% endfor %}
+                    </select>
 
-                <!-- <select id="empleado" name="empleado" class="form-control">
+                    <!-- <select id="empleado" name="empleado" class="form-control">
                     <option value="1">Isaac Gómez</option>
                     <option value="2">Jordano Sornoza</option>
                     <option value="3">Klever Franco</option>
                     <option value="4">Matias Peñafiel</option>
                 </select> -->
-            </div>
+                </div>
 
-            <div class="form-group mb-4">
+                <div class="form-group mb-4">
                     <label for="uploadVideo">Subir Video:</label>
-                    <input  class="form-control-file" type="file" name="file" accept="video/*" required>
+                    <input class="form-control-file" type="file" name="file" accept="video/*" required>
                     <br>
                     <button class="btn btn-primary" type="submit">Subir y Procesar</button>
                 </div>
             </form>
-          
+
             <!-- Combo box para seleccionar el método -->
             <div class="form-group mb-4">
                 <label for="metodo">Método:</label>
@@ -54,17 +55,19 @@
                     <option value="OCRA">OCRA</option>
                 </select>
             </div>
-          
+
             <!-- Espacio para visualizar el video -->
-            <div class="video-container mb-4">
-                <video id="videoPlayer" controls>
-                    <source src="{{ url_for('video_routes.video_view')}}" type="video/mp4">
-                    Tu navegador no soporta el elemento de video.
+            
+            <div class="form-group mb-4">
+                <label for="video">Video Procesado:</label>
+                <video id="video" width="640" height="480" controls>
+                    <source src="/static/video_marcado/videoplayback_20240827_220339.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de videos.
                 </video>
-                <button class="btn btn-secondary mt-2" href="{{ url_for('video_routes.video_view') }}" download>Descargar Video Marcado</button>
             </div>
+            
             <img src="{{ url_for('static', filename='imagenes/mapa_calor_ocra.png') }}" alt="Image"
-                    class="img-responsive_ocra mr-2">
+                class="img-responsive_ocra mr-2">
             <!-- Grid de tabla con datos generales del análisis -->
             <!-- Contenedor principal -->
             <div class="container mt-5">
@@ -140,64 +143,25 @@
                                 </tbody>
                             </table>
                         </div>
-
-                        <!-- Grid de tabla con resultados y botón para descargar Excel -->
-                        <div class="col-md-6">
-                            <div class="table-container">
-                                <h4>Resultados OCRA</h4>
-                                <table class="table table-bordered results-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Factor de Recuperación (FR)</th>
-                                            <th>Factor de Frecuencia (FF)</th>
-                                            <th>Factor de Fuerza (FFz)</th>
-                                            <th>Factor de Posturas y Movimientos (FP)</th>
-                                            <th>Factor de Riesgos Adicionales (FC)</th>
-                                            <th>Multiplicador de Duración (MD)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>0</td>
-                                            <td>2,5</td>
-                                            <td>0</td>
-                                            <td>8</td>
-                                            <td>0,6</td>
-                                            <td>0,5</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="6"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Índice Check List OCRA</td>
-                                            <td>Nivel de Riesgo</td>
-                                            <td>Acción Recomendada</td>
-                                            <td>Índice OCRA Equivalente</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr class="highlight">
-                                            <td>5,55</td>
-                                            <td>Aceptable</td>
-                                            <td>No se requiere</td>
-                                            <td>1.6 - 2.2</td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <button class="btn btn-primary mt-2" id="downloadExcel">Descargar Excel</button>
+                <!-- <button class="btn btn-primary mt-2" id="downloadExcel">Descargar Excel</button> -->
+                <!-- Botón para descargar el archivo Excel -->
+                <div class="col-md-6">
+                    <div class="table-container">
+                        <h4>Resultados OCRA</h4>
+                        <a href="{{ url_for('descargar_excel', video='etiquetado') }}" class="btn btn-primary">Descargar Excel</a>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 <script>
-    document.getElementById('uploadForm').addEventListener('submit', function() {
+    document.getElementById('uploadForm').addEventListener('submit', function () {
         document.getElementById('loading').style.display = 'block'; // Mostrar pantalla de carga
     });
-    </script>
+</script>
 {% endblock %}

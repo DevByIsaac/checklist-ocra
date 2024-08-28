@@ -50,7 +50,7 @@ def get_number_of_cycles(video_data):
     except KeyError as e:
         raise KeyError(f"Falta una clave en los datos del video: {e}")
     
-def tiempo_neto(actividad, empleado):
+def tiempo_neto(empleado, actividad):
     # Encuentra el archivo JSON y el video más recientes
     json_path = get_most_recent_file(JSON_FOLDER, '.json')
     video_path = get_most_recent_file(VIDEO_MARCADO_FOLDER, '.mp4')

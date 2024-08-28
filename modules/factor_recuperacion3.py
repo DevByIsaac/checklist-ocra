@@ -58,10 +58,11 @@ def get_input(prompt):
             print(f"Error: {e}. Inténtalo de nuevo con el formato correcto.")
 
 def factor_recu(empleado, actividad):
+    print(actividad)
     # Datos de prueba
-    pauses = actividad.get("num_pauses", [10])  # Usa 10 como valor predeterminado si el dato no está disponible
-    lunch_break_duration = actividad.get("lunch_break_duration", 30)  # Valor predeterminado 30 minutos
-    shift_duration = actividad["duracion_turno"]  # Esta clave parece estar presente, así que la mantenemos como está
+    pauses = [actividad["num_pausas"]] # Usa 10 como valor predeterminado si el dato no está disponible
+    lunch_break_duration = actividad["lunch_break_duration"]  # Valor predeterminado 30 minutos - none
+    shift_duration = empleado["duracion_turno"]  # Esta clave parece estar presente, así que la mantenemos como está
     #num_pauses = actividad.get("num_pauses", 0)
 
     # Ruta del archivo JSON

@@ -14,10 +14,10 @@ def cargar_video():
     employees = get_all_empleados() # obtenemos empleados para mostrarlos en el <Select>
     #return render_template("cargar_video.html", employees=employees)
     # Obtener el nombre del video procesado de los parámetros de consulta
-    video_filename = request.args.get('video_filename', '')
-    video_url = url_for('static', filename=f'video_marcado/{video_filename}')
+    #video_filename = request.args.get('video_filename', '')
+    #video_url = url_for('static', filename=f'video_marcado/{video_filename}')
     
-    return render_template("cargar_video.html", employees=employees, video_url=video_url)
+    return render_template("cargar_video.html", employees=employees)
 
 @video_routes.route('/upload_video', methods=['POST'])
 def upload_video():
@@ -39,22 +39,24 @@ def upload_video():
             file.save(filepath)
        
             # Aqui llamamos todas las funciones que nos de la gana...
-            process_video(filepath, empleado)
+            video_exportado, json_archivo = process_video(filepath, empleado)
             #draw_keypoints_and_angles(filepath, output_video_folder, json_folder)
             
             flash('Video Procesado exitosamente')
             #return redirect(url_for('video_routes.cargar_video')
-            return redirect(url_for('video_routes.cargar_video'))
-
+            #return redirect(url_for('video_routes.ver_video'))
+            return render_template('cargar_video.html', video_url = video_exportado)
     
     return render_template("cargar_video.html")
 
-@video_routes.route('/ver-video')
-def video_view():
+@video_routes.route('/ver_video', methods=['GET'])
+def ver_video():
     video_filename = request.args.get('video_filename', '')
-    video_url = url_for('static', filename=f'video_marcado/{video_filename}')
+    video_url = os.path.join('static/video_marcado/', video_filename)
+    print(video_url)
+    print(video_filename)
+    #video_url = url_for('static', filename=f'video_marcado/{video_filename}')
     return render_template('cargar_video.html', video_url=video_url)
-
 
 def allowed_file(filename):
     # Solo permite .mp4 (eso creo)

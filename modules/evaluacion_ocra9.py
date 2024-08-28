@@ -125,25 +125,57 @@ def armar_excel(ickl, df, fr, ff, ffz, fp, fc, md):
             cell.alignment = alignment
 
             # Aplicar formato condicional para los factores en la fila 2
-            if cell.row == 2:  # Fila de factores
+            """ if cell.row == 2:  # Fila de factores
                 if isinstance(cell.value, (int, float)):
                     if cell.value > 14:
                         # Color: Rojo claro (FF9999)
                         cell.fill = PatternFill(start_color='FF9999', end_color='FF9999', fill_type='solid')
                     elif cell.value > 7.5:
                         # Color: Amarillo claro (FFCC99)
-                        cell.fill = PatternFill(start_color='FFCC99', end_color='FFCC99', fill_type='solid')
+                        cell.fill = PatternFill(start_color='FFCC99', end_color='FFCC99', fill_type='solid') """
+            for row in ws.iter_rows(min_row=2, max_row=2, min_col=1, max_col=ws.max_column):
+                for cell in row:
+                    cell.alignment = alignment
+                    if isinstance(cell.value, (int, float)):
+                        if cell.value > 14:
+                            # Color: Rojo claro (FF9999)
+                            cell.fill = PatternFill(start_color='FF9999', end_color='FF9999', fill_type='solid')
+                        elif cell.value > 7.5:
+                            # Color: Amarillo claro (FFCC99)
+                            cell.fill = PatternFill(start_color='FFCC99', end_color='FFCC99', fill_type='solid')
 
             # Aplicar formato condicional para los resultados en la fila 5
-            if cell.row == 5:  # Fila de resultados
+            """ if cell.row == 5:  # Fila de resultados
                 if isinstance(cell.value, (int, float)):
                     if cell.value > 14:
                         # Color: Rojo claro (FF9999)
                         cell.fill = PatternFill(start_color='FF9999', end_color='FF9999', fill_type='solid')
                     elif cell.value > 7.5:
                         # Color: Amarillo claro (FFCC99)
-                        cell.fill = PatternFill(start_color='FFCC99', end_color='FFCC99', fill_type='solid')
-
+                        cell.fill = PatternFill(start_color='FFCC99', end_color='FFCC99', fill_type='solid') """
+            # Aplicar formato condicional para los resultados en la fila 5
+            for row in ws.iter_rows(min_row=5, max_row=5, min_col=1, max_col=ws.max_column):
+                for cell in row:
+                    cell.alignment = alignment
+                    if isinstance(cell.value, (int, float)):
+                        if cell.value <= 5:
+                            # Color: Verde encendido (9BBB59)
+                            cell.fill = PatternFill(start_color='9BBB59', end_color='9BBB59', fill_type='solid')
+                        elif 5.1 <= cell.value <= 7.5:
+                            # Color: Verde claro (C5E0B4)
+                            cell.fill = PatternFill(start_color='C5E0B4', end_color='C5E0B4', fill_type='solid')
+                        elif 7.6 <= cell.value <= 11:
+                            # Color: Naranja pastel (F4B084)
+                            cell.fill = PatternFill(start_color='F4B084', end_color='F4B084', fill_type='solid')
+                        elif 11.1 <= cell.value <= 14:
+                            # Color: Vino claro (C65911)
+                            cell.fill = PatternFill(start_color='C65911', end_color='C65911', fill_type='solid')
+                        elif 14.1 <= cell.value <= 22.5:
+                            # Color: Rojo pastel (FF9999)
+                            cell.fill = PatternFill(start_color='FF9999', end_color='FF9999', fill_type='solid')
+                        else:  # > 22.5
+                            # Color: Rojo (FF0000)
+                            cell.fill = PatternFill(start_color='FF0000', end_color='FF0000', fill_type='solid')
 
     # Ajustar el ancho de las columnas
     for col in ws.columns:
