@@ -31,13 +31,6 @@
                         </option>
                         {% endfor %}
                     </select>
-
-                    <!-- <select id="empleado" name="empleado" class="form-control">
-                    <option value="1">Isaac Gómez</option>
-                    <option value="2">Jordano Sornoza</option>
-                    <option value="3">Klever Franco</option>
-                    <option value="4">Matias Peñafiel</option>
-                </select> -->
                 </div>
 
                 <div class="form-group mb-4">
@@ -57,104 +50,28 @@
             </div>
 
             <!-- Espacio para visualizar el video -->
-            
+            {% if video_url %}
             <div class="form-group mb-4">
                 <label for="video">Video Procesado:</label>
                 <video id="video" width="640" height="480" controls>
-                    <source src="/static/video_marcado/videoplayback_20240827_220339.mp4" type="video/mp4">
+                    <source src="{{ video_url }}" type="video/mp4">
                     Tu navegador no soporta la reproducción de videos.
                 </video>
             </div>
-            
+            {% endif %}
             <img src="{{ url_for('static', filename='imagenes/mapa_calor_ocra.png') }}" alt="Image"
                 class="img-responsive_ocra mr-2">
             <!-- Grid de tabla con datos generales del análisis -->
             <!-- Contenedor principal -->
             <div class="container mt-5">
-                <!-- Fila para las tablas -->
-                <div class="row">
-                    <!-- Grid para la primera tabla -->
-                    <div class="col-md-6">
-                        <div class="table-container">
-                            <h4>Datos del Análisis</h4>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Segundo</th>
-                                        <th>Frame</th>
-                                        <th>Análisis Video</th>
-                                        <th>Ángulo Hombro Izquierdo</th>
-                                        <th>Ángulo del Hombro Derecho</th>
-                                        <th>Ángulo Codo Izquierdo</th>
-                                        <th>Ángulo Codo Derecho</th>
-                                        <th>Ángulo de Muñeca Izquierda</th>
-                                        <th>Ángulo de Muñeca Derecha</th>
-                                        <th>Ángulo Mano Izquierdo</th>
-                                        <th>Ángulo Mano Derecho</th>
-                                        <th>Posición Hombro Izquierdo</th>
-                                        <th>Posición Hombro Derecho</th>
-                                        <th>Posición Codo Izquierdo</th>
-                                        <th>Posición Codo Derecho</th>
-                                        <th>Posición Muñeca Izquierda</th>
-                                        <th>Posición Muñeca Derecha</th>
-                                        <th>Posición Mano Izquierda</th>
-                                        <th>Posición Mano Derecho</th>
-                                        <th>Tiempo Neto de Trabajo Repetitivo</th>
-                                        <th>Tiempo Neto del Ciclo</th>
-                                        <th>Factor de Recuperación</th>
-                                        <th>FF</th>
-                                        <th>Factor de Fuerza</th>
-                                        <th>Factor de Posturas y Movimientos</th>
-                                        <th>Factor de Riesgos Adicionales</th>
-                                        <th>Multiplicador de Duración</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>C:\Tesis\TestErgo\muestra\maquila012.mp4</td>
-                                        <td>38,39560055</td>
-                                        <td>32,53858348</td>
-                                        <td>170,9577599</td>
-                                        <td>152,7118062</td>
-                                        <td>170,9577599</td>
-                                        <td>152,7118062</td>
-                                        <td>170,9577599</td>
-                                        <td>152,7118062</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>[List]</td>
-                                        <td>1,886956522</td>
-                                        <td>0,03773913</td>
-                                        <td>0</td>
-                                        <td>2,5</td>
-                                        <td>0</td>
-                                        <td>8</td>
-                                        <td>0,6</td>
-                                        <td>0,5</td>
-                                    </tr>
-                                    <!-- Añadir más filas según sea necesario -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
                 <!-- <button class="btn btn-primary mt-2" id="downloadExcel">Descargar Excel</button> -->
                 <!-- Botón para descargar el archivo Excel -->
                 <div class="col-md-6">
-                    <div class="table-container">
                         <h4>Resultados OCRA</h4>
-                        <a href="{{ url_for('descargar_excel', video='etiquetado') }}" class="btn btn-primary">Descargar Excel</a>
+                        <a href="{{ url_for('video_routes.descargar_json', video_filename=video_filename) }}" class="btn btn-primary">Descargar JSON</a>
+                        <a href="{{ url_for('video_routes.descargar_excel', video_filename=video_filename) }}" class="btn btn-primary">Descargar Excel</a>
 
-                    </div>
                 </div>
-
             </div>
         </div>
     </div>

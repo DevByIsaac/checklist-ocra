@@ -3,7 +3,7 @@ from functools import wraps
 
 info_routes = Blueprint('my_routes', __name__)
 
-@info_routes.route('/manual')
+""" @info_routes.route('/manual')
 def manual():
     return render_template("manual.html")
 #----------------------------------------------------------------------RUTA EJEMPLOS-----------------
@@ -17,7 +17,7 @@ def info_reba():
 #----------------------------------------------------------------------RUTA INFORMACION RULA-----------------
 @info_routes.route('/info_rula')
 def info_rula():
-    return render_template("info_rula.html")
+    return render_template("info_rula.html") """
 #----------------------------------------------------------------------RUTA INFORMACION OCRA-----------------
 @info_routes.route('/info_ocra')
 def info_ocra():

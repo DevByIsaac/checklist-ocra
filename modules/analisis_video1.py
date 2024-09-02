@@ -39,6 +39,7 @@ def process_video(video_dir, empleado):
     static_folder = 'static'
     video_marcado_folder = os.path.join(static_folder, 'video_marcado')
     json_folder = os.path.join(static_folder, 'json')
+    #excel_path = os.path.join(static_folder, 'resultados')
 
     # Crea las carpetas si no existen
     if not os.path.exists(video_marcado_folder):
@@ -59,7 +60,8 @@ def process_video(video_dir, empleado):
     factor_ries_adi(actividad)
     data_list = multiplicador()
     convertir_datafram(data_list)
-    return video_exportado, json_archivo
+    excel_path = armar_excel()
+    return video_exportado, json_archivo, excel_path
 
 def guardar_video_marcado(video_path, video_name):
     # Define la ruta de la carpeta 'video_marcado' dentro de 'static'
@@ -90,6 +92,11 @@ def load_videos(video_dir):
         if filename.endswith(".mp4"):
             videos.append(os.path.join(video_dir, filename))
     return videos
+
+def guardar_excel(excel_path):
+    excel_path()
+
+    return excel_path
 
 # Función para extraer frames de los videos
 def extract_frames(video_path, interval=30):
@@ -272,7 +279,8 @@ def draw_keypoints_and_angles(video_path, output_video_folder, json_folder, mp_p
         os.makedirs(json_folder)
 
     # Crear el video marcado
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    #fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*'H264')
     out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
 
     frame_count = 0
