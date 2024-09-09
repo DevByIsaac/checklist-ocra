@@ -42,14 +42,14 @@ def upload_video():
             file.save(filepath)
        
             # Aqui llamamos todas las funciones que nos de la gana...
-            video_exportado, json_archivo, excel_archivo = process_video(filepath, empleado)
+            video_exportado, json_archivo, excel_path = process_video(filepath, empleado)
             #draw_keypoints_and_angles(filepath, output_video_folder, json_folder)
             
             flash('Video Procesado exitosamente')
             #return redirect(url_for('video_routes.cargar_video')
             #return redirect(url_for('video_routes.ver_video'))
             #return render_template('cargar_video.html', video_url = video_exportado)
-            return render_template('cargar_video.html', video_url=video_exportado, video_filename=os.path.basename(json_archivo), video_filename=os.path.basename(excel_archivo))
+            return render_template('cargar_video.html', video_url=video_exportado, video_filename=os.path.basename(json_archivo), excel_filename=os.path.basename(excel_path))
 
             #return redirect(url_for('video_routes.ver_video', video_filename=video_exportado))
 
@@ -65,27 +65,15 @@ def ver_video():
     video_url = url_for('static', filename=f'video_marcado/{video_filename}')
     return render_template('cargar_video.html', video_url=video_url)
 
-# Ruta para generar el archivo Excel
-@video_routes.route('/generate_excel', methods=['POST'])
-def generate_excel():
-    global excel_path
-    # Aquí defines y generas tu archivo Excel
-    # Por ejemplo:
-    excel_path = '/path/to/your/excel_file.xlsx'
-    # Guardar el archivo Excel
-    wb.save(excel_path)
-    return jsonify({"message": "Archivo Excel generado"})
-
 @video_routes.route('/descargar_excel', methods=['GET'])
 def descargar_excel():
-    video_filename = request.args.get('video_filename', '')
-    excel_path = os.path.join('static/resultados/', video_filename)
-    #excel_url = url_for('static', filename=f'resultados/{video_filename}')
-    #return render_template('cargar_video.html', excel_url=excel_url)
+    excel_filename = request.args.get('excel_filename', '')
+    excel_path = os.path.join('static/resultados/', excel_filename)
+    
     if not os.path.isfile(excel_path):
         flash('Archivo Excel no encontrado')
         return redirect(url_for('video_routes.cargar_video'))
-    
+    #return render_template('cargar_video.html', excel_filename=excel_filename)
     return send_file(excel_path, as_attachment=True)
 
 @video_routes.route('/descargar_json', methods=['GET'])

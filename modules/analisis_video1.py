@@ -59,8 +59,7 @@ def process_video(video_dir, empleado):
     factor_pos_mov()
     factor_ries_adi(actividad)
     data_list = multiplicador()
-    convertir_datafram(data_list)
-    excel_path = armar_excel()
+    excel_path = convertir_datafram(data_list)
     return video_exportado, json_archivo, excel_path
 
 def guardar_video_marcado(video_path, video_name):

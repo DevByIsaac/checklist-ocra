@@ -1,5 +1,6 @@
 import psycopg2
-from flask import current_app, g
+from psycopg2 import errors
+from flask import current_app, g, flash
 from config import Config
 
 def get_db_connection():
@@ -38,7 +39,15 @@ def create_user_procedure(username, email, password, created_by, updated_by):
                        (username, email, password, created_by, updated_by))
         conn.commit()
         return True
+    except errors.UniqueViolation as e:
+        # Capturar y manejar la excepción si el usuario ya existe
+        flash('El correo ya está registrado', 'error')
+        print(f'Error creando el usuario: {e}')
+        conn.rollback()
+        return False
     except Exception as e:
+        # Manejar otras excepciones
+        flash('Error inesperado al crear el usuario. Inténtalo de nuevo.', 'error')
         print(f'Error creando el usuario: {e}')
         conn.rollback()
         return False

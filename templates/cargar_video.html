@@ -69,9 +69,11 @@
                 <div class="col-md-6">
                         <h4>Resultados OCRA</h4>
                         <a href="{{ url_for('video_routes.descargar_json', video_filename=video_filename) }}" class="btn btn-primary">Descargar JSON</a>
-                        <a href="{{ url_for('video_routes.descargar_excel', video_filename=video_filename) }}" class="btn btn-primary">Descargar Excel</a>
-
                 </div>
+                <p>
+                <div class="col-md-6">
+                    <a href="{{ url_for('video_routes.descargar_excel', excel_filename=excel_filename) }}" class="btn btn-primary">Descargar Excel</a>
+            </div>
             </div>
         </div>
     </div>

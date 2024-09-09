@@ -6,30 +6,28 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 mx-auto register-form-container">
-            <!-- <h2 class="my-4">Registro</h2>
-            <img src="{{ url_for('static', filename='imagenes/regis1.png') }}" alt="Image" class="small-image"> -->
             <h2 class="my-4 d-flex align-items-center">
                 <img src="{{ url_for('static', filename='imagenes/registro.png') }}" alt="Image" class="small-image mr-2">
                 Registro
             </h2>
-              
             <form action="/registro" method="POST">
-                <!-- Campofs del formulario -->
+                <!-- Mostrar mensajes flash -->
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == 'error' %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <!-- Campos del formulario -->
                 <div class="form-group">
                     <label for="cedula">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
-                <!-- <div class="form-group">
-                    <label for="sexo">Sexo:</label>
-                    <select class="form-control" id="sexo" name="sexo" required>
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                    </select>
-                </div> -->
-                <!-- <div class="form-group">
-                    <label for="edad">Edad:</label>
-                    <input type="number" class="form-control" id="edad" name="edad" required>
-                </div> -->
                 <div class="form-group">
                     <label for="email">Correo de Usuario:</label>
                     <input type="email" class="form-control" id="email" name="email" required>

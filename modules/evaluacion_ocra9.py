@@ -27,8 +27,8 @@ def convertir_datafram(data_list):
 
     # Calcular el Índice Check List OCRA (ICKL)
     ickl = (fr + ff + ffz + fp + fc) * md
-    armar_excel(ickl, df, fr, ff, ffz, fp, fc, md)
-
+    path = armar_excel(ickl, df, fr, ff, ffz, fp, fc, md)
+    return path
 # Determinar Nivel de Riesgo y Acción Recomendada
 def determinar_nivel_riesgo(ickl):
     if ickl <= 5:
@@ -194,3 +194,4 @@ def armar_excel(ickl, df, fr, ff, ffz, fp, fc, md):
     wb.save(excel_path)
 
     print(f"El Excel se ha creado y guardado en {excel_path}.")
+    return excel_path
