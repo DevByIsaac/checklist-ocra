@@ -57,10 +57,6 @@ def tiempo_neto(empleado, actividad):
     #actividad = get_actividad_by_empleado_id(empleado["empleado_id"])
     if json_path is None or video_path is None:
         raise FileNotFoundError("No se encontraron archivos JSON o de video en las carpetas especificadas.")
-
-    print(f"Archivo JSON más reciente: {json_path}")
-    print(f"Video más reciente: {video_path}")
-
     # Extraer datos del video
     duration_total = get_duration_from_video(video_path)
     video_data = {
@@ -100,6 +96,5 @@ def tiempo_neto(empleado, actividad):
         with open(json_path, 'w') as file:
             json.dump(data, file, indent=4)
 
-        print("El JSON se ha actualizado con TNTR y TNC.")
     except Exception as e:
         print(f"Error al procesar el archivo JSON o al calcular TNTR/TNC: {e}")

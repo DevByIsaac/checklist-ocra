@@ -42,21 +42,13 @@ def factor_ries_adi(actividad):
 
     # Tomar el primer objeto de la lista
     data = data_list[0]
-    print(data)
     # Calcular el FC
     fc = calculate_additional_risks(actividad)
 
     # Añadir el cálculo al JSON
     data['Factor de Riesgos Adicionales'] = fc
 
-    # Guardar el JSON actualizado
-    '''updated_json_path = json_path.replace('.json', '_fc.json')
-    with open(updated_json_path, 'w') as file:
-        json.dump(data_list, file, indent=4)
-
-    print(f"El JSON se ha actualizado con el Factor de Riesgos Adicionales (FC) y guardado en {updated_json_path}.")''' 
     # Guardar el JSON actualizado (sobrescribiendo el archivo existente)
     with open(json_path, 'w') as file:
         json.dump(data_list, file, indent=4)
 
-    print(f"El JSON se ha actualizado con el Factor de Riesgos Adicionales (FC) y guardado en {json_path}.")

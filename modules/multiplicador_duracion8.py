@@ -82,15 +82,7 @@ def multiplicador():
     # Añadir el cálculo al JSON
     data['Multiplicador de Duracion'] = md
 
-    # Guardar el JSON actualizado
-    '''updated_json_path = json_path.replace('.json', '_md.json')
-    with open(updated_json_path, 'w') as file:
-        json.dump(data_list, file, indent=4)
-
-    print(f"El JSON se ha actualizado con el Multiplicador de Duración y guardado en {updated_json_path}.")''' 
     # Guardar el JSON actualizado (sobrescribiendo el archivo existente)
     with open(json_path, 'w') as file:
         json.dump(data_list, file, indent=4)
-
-    print(f"El JSON se ha actualizado con el Multiplicador de Duración y guardado en {json_path}.")
     return data_list

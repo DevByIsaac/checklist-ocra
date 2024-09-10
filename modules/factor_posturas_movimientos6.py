@@ -73,15 +73,7 @@ def factor_pos_mov():
 
     # Añadir el cálculo al JSON
     data['Factor de Posturas y Movimientos'] = fp
-
-    # Guardar el JSON actualizado
-    '''updated_json_path = json_path.replace('.json', '_fp.json')
-    with open(updated_json_path, 'w') as file:
-        json.dump(data_list, file, indent=4)
-
-    print(f"El JSON se ha actualizado con el Factor de Posturas y Movimientos y guardado en {updated_json_path}.")''' 
     # Guardar el JSON actualizado (sobrescribiendo el archivo existente)
     with open(json_path, 'w') as file:
         json.dump(data_list, file, indent=4)
 
-    print(f"El JSON se ha actualizado con el Factor de Posturas y Movimientos y guardado en {json_path}.")

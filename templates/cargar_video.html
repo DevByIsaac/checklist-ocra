@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Cargar Video - ERGORICE{% endblock %}
+{% block title %}Cargar Video - ERGOTECH{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -12,15 +12,15 @@
                     class="img-responsive mr-2">
                 Cargar Video
             </h2>
+            <!-- Fondo semitransparente -->
+            <div id="loadingOverlay"></div>
+
             <!-- Pantalla de carga -->
-            <div id="loading" style="display: none;">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only">Cargando...</span>
-                </div>
-                <p>Cargando video...</p>
+            <div id="loading" style="display: none;" >
+                <img src="/static/imagenes/cargando.gif" alt="Cargando...">
             </div>
             <!-- Botón para subir video -->
-            <form action="{{ url_for('video_routes.upload_video') }}" method="POST" enctype="multipart/form-data">
+            <form id="uploadForm" action="{{ url_for('video_routes.upload_video') }}" method="POST" enctype="multipart/form-data">
                 <!-- Combo box para seleccionar el empleado -->
                 <div class="form-group mb-4">
                     <label for="empleado">Empleado:</label>
@@ -81,6 +81,10 @@
 <script>
     document.getElementById('uploadForm').addEventListener('submit', function () {
         document.getElementById('loading').style.display = 'block'; // Mostrar pantalla de carga
+        document.getElementById('loadingOverlay').style.display = 'block'; // Mostrar el fondo semitransparente
+        document.getElementById('uploadForm').style.display = 'none'; // Ocultar el formulario
     });
 </script>
+
+
 {% endblock %}

@@ -4,7 +4,6 @@ from flask import current_app, g, flash
 from config import Config
 
 def get_db_connection():
-    print("Conexion")
     g.db_connection = psycopg2.connect(
         dbname=current_app.config['DB_NAME'],
         user=current_app.config['DB_USER'],

@@ -192,6 +192,4 @@ def armar_excel(ickl, df, fr, ff, ffz, fp, fc, md):
 
     # Guardar el archivo Excel
     wb.save(excel_path)
-
-    print(f"El Excel se ha creado y guardado en {excel_path}.")
     return excel_path

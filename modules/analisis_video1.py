@@ -18,28 +18,16 @@ from database import get_actividad_by_empleado_id
 
 def process_video(video_dir, empleado):
     actividad = get_actividad_by_empleado_id(empleado["empleado_id"])
-    #video_dir = 'C:\\Tesis\\TestErgo\\muestra'
     videos = [video_dir]
-    # Cargar videos
-    #videos = load_videos(video_dir)
-
-    # Obtener y mostrar los nombres de todos los videos
-    """ for video_path in videos:
-        video_name = os.path.basename(video_path)
-        print(video_name) """
 
     # Inicializar MediaPipe para detección de puntos clave
     mp_drawing = mp.solutions.drawing_utils
     mp_pose = mp.solutions.pose
 
     video_path = videos[0]
-    #output_folder = 'C:\\Tesis\\TestErgo\\resultados'
-    #output_video_folder = 'C:\\Tesis\\TestErgo\\videoMarcado'
-    # Define la ruta de la carpeta 'video_marcado' dentro de 'static'
     static_folder = 'static'
     video_marcado_folder = os.path.join(static_folder, 'video_marcado')
     json_folder = os.path.join(static_folder, 'json')
-    #excel_path = os.path.join(static_folder, 'resultados')
 
     # Crea las carpetas si no existen
     if not os.path.exists(video_marcado_folder):
@@ -263,15 +251,12 @@ def draw_keypoints_and_angles(video_path, output_video_folder, json_folder, mp_p
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     
     video_name = os.path.splitext(os.path.basename(video_path))[0]
-    #video_frame_folder = os.path.join(output_folder, video_name)
     output_video_name = f"{video_name}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.mp4"
     output_video_path = os.path.join(output_video_folder, output_video_name)
     json_filename = f"{video_name}_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     json_path = os.path.join(json_folder, json_filename)
 
     # Crear carpetas si no existen
-    #if not os.path.exists(video_frame_folder):
-        #os.makedirs(video_frame_folder)
     if not os.path.exists(output_video_folder):
         os.makedirs(output_video_folder)
     if not os.path.exists(json_folder):
@@ -302,7 +287,6 @@ def draw_keypoints_and_angles(video_path, output_video_folder, json_folder, mp_p
         if keypoints:
             for j, point in enumerate(keypoints):
                 cv2.circle(frame, (int(point[0] * frame.shape[1]), int(point[1] * frame.shape[0])), 5, (0, 255, 0), -1)
-                print("Estado "+str(j))
 
                 # Añadir texto con información relevante junto a cada punto
                 if j == mp_pose.PoseLandmark.LEFT_SHOULDER.value:
@@ -347,8 +331,4 @@ def draw_keypoints_and_angles(video_path, output_video_folder, json_folder, mp_p
     # Guardar el archivo JSON con los resultados del análisis
     with open(json_path, 'w') as json_file:
         json.dump(analysis_results, json_file, indent=4)
-
-    #print(f"Frames exportados a: {video_frame_folder}")
-    print(f"Video exportado a: {output_video_path}")
-    print(f"JSON exportado a: {json_path}")
     return output_video_path, json_path
