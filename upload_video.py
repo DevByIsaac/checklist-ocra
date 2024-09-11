@@ -15,11 +15,6 @@ def cargar_video():
     if 'user_email' not in session:  # Si no está loggeado el usuario, no muestra esta page
         return redirect(url_for('dashboard'))
     employees = get_all_empleados() # obtenemos empleados para mostrarlos en el <Select>
-    #return render_template("cargar_video.html", employees=employees)
-    # Obtener el nombre del video procesado de los parámetros de consulta
-    #video_filename = request.args.get('video_filename', '')
-    #video_url = url_for('static', filename=f'video_marcado/{video_filename}')
-    
     return render_template("cargar_video.html", employees=employees)
 
 @video_routes.route('/upload_video', methods=['POST'])
